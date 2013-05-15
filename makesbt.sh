@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# usage: sh makesbt.sh PROJECT_NAME
+
 projectRoot=$1
 ScalaVer=$(scala -version 2>&1 /dev/null |cut -d " " -f5)
 
