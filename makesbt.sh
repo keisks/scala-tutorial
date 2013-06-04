@@ -19,7 +19,7 @@ scalaVersion := \"$ScalaVer\""> ${projectRoot}/build.sbt
 echo "import sbt._
 import Keys._
 
-object MyProject $projectRoot extends Build {
+object $projectRoot extends Build {
 
   lazy val root = Project(
       \"${projectRoot}\",          // Project name
