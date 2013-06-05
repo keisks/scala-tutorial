@@ -26,7 +26,7 @@ object $projectRoot extends Build {
       file(\".\")         // Project root directory
     ).settings(         // Project settings
       Seq(
-        version := \"1.0\"
+        version := \"1.0\",
         scalaVersion := \"$ScalaVer\"
       ): _*
     )
