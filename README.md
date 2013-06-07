@@ -11,10 +11,10 @@ Here is a step-by-step instruction.
 
 1. Download the repository and tutorial dataset. (This step is necessary only at the first time.)
 
-  ``git clone https://github.com/keisks/scala-tutorial.git``
-  ``wget http://www.phontron.com/data/nlp-programming-data.zip``
-  ``unzip nlp-programming-data.zip``
-  ``rm nlp-programming-data.zip``
+        ``git clone https://github.com/keisks/scala-tutorial.git``  
+        ``wget http://www.phontron.com/data/nlp-programming-data.zip``  
+        ``unzip nlp-programming-data.zip``  
+        ``rm nlp-programming-data.zip``  
 
 2. Make project by makesbt.sh
 
