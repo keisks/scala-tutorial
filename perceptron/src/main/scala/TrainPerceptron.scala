@@ -5,8 +5,17 @@ object TrainPerceptron {
   def update_weights(w: mutable.Map[String, Float], phi: mutable.Map[String, Float], y: Int): mutable.Map[String, Float] = {
     phi.foreach{ e => 
       val name = e._1
-      val value = e._2
-      w.update(name, value*y)
+      val value = e._2 * y
+      var new_w = 0.0f
+
+      if (w.contains(name)){
+        new_w = w(name) + value
+      } else {
+        new_w = value
+      }
+
+      //val value*y + value
+      w.update(name, new_w)
     }
     w
   }
@@ -20,11 +29,12 @@ object TrainPerceptron {
       if (w.contains(name)){
         score += value * w(name)
       }
-      if (score >= 0){
-        return_val = 1
-      } else {
-        return_val = -1
-      }
+    }
+    println(score)
+    if (score >= 0){
+      return_val = 1
+    } else {
+      return_val = -1
     }
     return_val
   }
@@ -62,7 +72,7 @@ object TrainPerceptron {
     var w = mutable.Map[String, Float]() //weightMap
 
     // for I iteration
-    for (i <- 0 to 5){
+    for (i <- 0 to 1){
 
       // foreach labeled pair x, y in the data
       for(line <- source.getLines()){
@@ -78,9 +88,9 @@ object TrainPerceptron {
         //if y_prime != y:
           //update_weights(w, phi, y)
         if(y_prime != label){
-          //println(w)
+          println(w)
           w = update_weights(w, phi, label)
-          //println(w)
+          println(w)
         }
       }
     }
