@@ -2,9 +2,15 @@ object TrainPerceptron {
     import scala.io._
     import scala.collection.mutable
 
-//  def update_weights(w, phi, y){
-//  }
-//
+  def update_weights(w: mutable.Map[String, Float], phi: mutable.Map[String, Float], y: Int): mutable.Map[String, Float] = {
+    phi.foreach{ e => 
+      val name = e._1
+      val value = e._2
+      w.update(name, value*y)
+    }
+    w
+  }
+
   def predict_one(w: mutable.Map[String, Float], phi: mutable.Map[String, Float]): Int = {
     var score = 0.0f
     var return_val = 0
@@ -13,7 +19,6 @@ object TrainPerceptron {
       val value = e._2
       if (w.contains(name)){
         score += value * w(name)
-        println(score)
       }
       if (score >= 0){
         return_val = 1
@@ -54,15 +59,15 @@ object TrainPerceptron {
     val source = Source.fromFile(filePath, "UTF-8")
 
     // create map w
-    val w = mutable.Map[String, Float]() //weightMap
+    var w = mutable.Map[String, Float]() //weightMap
 
     // for I iteration
-    for (i <- 0 to 1){
+    for (i <- 0 to 5){
 
       // foreach labeled pair x, y in the data
       for(line <- source.getLines()){
         val label_words = line.stripLineEnd split '\t'
-        val label = label_words(0)
+        val label = label_words(0).toInt
         //val words = label_words(1).stripLineEnd split ' '
         val words = label_words(1)
 
@@ -70,17 +75,17 @@ object TrainPerceptron {
         val y_prime = predict_one(w, phi)
           
 
-        //
-        // if y_prime != y:
-          // update_weights(w, phi, y)
-
-
-
-
+        //if y_prime != y:
+          //update_weights(w, phi, y)
+        if(y_prime != label){
+          //println(w)
+          w = update_weights(w, phi, label)
+          //println(w)
+        }
       }
     }
 
-    // save w as a modelfile
+    // save w as a model file
   }
 
 }
