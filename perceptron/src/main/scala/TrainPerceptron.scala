@@ -1,6 +1,7 @@
 object TrainPerceptron {
     import scala.io._
     import scala.collection.mutable
+    import java.io.PrintWriter
 
   def update_weights(w: mutable.Map[String, Float], phi: mutable.Map[String, Float], y: Int): mutable.Map[String, Float] = {
     phi.foreach{ e => 
@@ -14,7 +15,6 @@ object TrainPerceptron {
         new_w = value
       }
 
-      //val value*y + value
       w.update(name, new_w)
     }
     w
@@ -58,7 +58,6 @@ object TrainPerceptron {
     featureMap
   }
 
-
   def main(args: Array[String]): Unit = {
     
     // get filePath
@@ -78,7 +77,6 @@ object TrainPerceptron {
       for(line <- source.getLines()){
         val label_words = line.stripLineEnd split '\t'
         val label = label_words(0).toInt
-        //val words = label_words(1).stripLineEnd split ' '
         val words = label_words(1)
 
         val phi = create_features(words)
@@ -88,14 +86,24 @@ object TrainPerceptron {
         //if y_prime != y:
           //update_weights(w, phi, y)
         if(y_prime != label){
-          println(w)
           w = update_weights(w, phi, label)
-          println(w)
         }
       }
     }
 
+    // get sorted keys
+    val sortedKeys = w.keys.toList.sorted
+
+    //open the modelFile for writing
+    val outFile = new PrintWriter("perceptron.model")
+
     // save w as a model file
+    sortedKeys.foreach { key => 
+      val weight = w(key)
+      outFile.println(f"$key\t$weight%.6f")
+    }
+    outFile.close()
+    source.close()
   }
 
 }
