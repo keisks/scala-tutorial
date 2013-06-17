@@ -1,13 +1,13 @@
-# Scala Tutorial for NLP
+# Scala ~~Tutorial~~ self-study for NLP
 
-This is a scala  ~~Tutorial~~ self-practice for Natural Language Processing (NLP).
+This is a scala  ~~Tutorial~~ self-study for Natural Language Processing (NLP).
 
 The practice is based on the NLP Programming Tutorial (http://www.phontron.com/teaching.php).  
-I am grateful to Graham Neubig for his great tutorial.
+I am grateful to Graham Neubig for his great tutorial at Nara Institute of Science and Technology (NAIST).
 
 N.B This repository is work-in-progress and continually-revised.
 
-Here is a step-by-step instruction.  
+For those who are interested in, here I give a step-by-step instruction.  
 For a great introduction of Scala can be found at <http://www.scala-lang.org/node/1305>
 
 
