@@ -2,13 +2,13 @@
 
 This is a scala  ~~Tutorial~~ self-study for Natural Language Processing (NLP).
 
-The practice is based on the NLP Programming Tutorial (http://www.phontron.com/teaching.php).  
+The practice is based on the NLP Programming Tutorial at <http://www.phontron.com/teaching.php?lang=en>.  
 I am grateful to Graham Neubig for his great tutorial at Nara Institute of Science and Technology (NAIST).
 
 N.B All the programs are written and tested on Mac. This repository is work-in-progress and continually-revised. 
 
 For those who are interested in, here I give a step-by-step instruction.  
-For a great introduction of Scala can be found at <http://www.scala-lang.org/node/1305>
+For a great introduction of Scala can be found at <http://www.scala-lang.org/node/1305>.
 
 (The step 1 and 2 are needed for the first time only.)
 
