@@ -1,7 +1,7 @@
 object TrainPerceptron {
-    import scala.io._
-    import scala.collection.mutable
-    import java.io.PrintWriter
+  import scala.io._
+  import scala.collection.mutable
+  import java.io.PrintWriter
 
   def update_weights(w: mutable.Map[String, Float], phi: mutable.Map[String, Float], y: Int): mutable.Map[String, Float] = {
     phi.foreach{ e => 
@@ -30,7 +30,7 @@ object TrainPerceptron {
         score += value * w(name)
       }
     }
-    println(score)
+    //println(score)
     if (score >= 0){
       return_val = 1
     } else {
@@ -46,10 +46,11 @@ object TrainPerceptron {
     // unigram feature
     val words = x.stripLineEnd split ' '
     for (word <- words){
-      if(featureMap.contains(word)){
-        featureMap.update(word, featureMap(word)+1.0f)
+      val feature_name = "UNI:" + word
+      if(featureMap.contains(feature_name)){
+        featureMap.update(feature_name, featureMap(feature_name)+1.0f)
       } else {
-        featureMap += word -> 1.0f
+        featureMap += feature_name -> 1.0f
       }
     }
 
