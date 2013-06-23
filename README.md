@@ -12,7 +12,7 @@ For a great introduction of Scala can be found at <http://www.scala-lang.org/nod
 
 (The step 1 and 2 are needed for the first time only.)
 
-1. For character encoding for Scala, the following settings are necessary (only for Mac users?).
+1. For character encoding for Scala, the following settings are necessary (only for Mac users?).  
   1.1. add ``export JAVA_OPTS="-Dfile.encoding=UTF-8"`` in your (bash, zsh, etc) rc file.  
   1.2. create ``~/.sbtconfig`` and write ``SBT_OPTS=-Dfile.encoding=UTF-8``.  
 
