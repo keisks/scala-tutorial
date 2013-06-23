@@ -5,7 +5,7 @@ This is a scala  ~~Tutorial~~ self-study for Natural Language Processing (NLP).
 The practice is based on the NLP Programming Tutorial at <http://www.phontron.com/teaching.php?lang=en>.  
 I am grateful to Graham Neubig for his great tutorial at Nara Institute of Science and Technology (NAIST).
 
-N.B All the programs are written and tested on Mac. This repository is work-in-progress and continually-revised. 
+N.B. All the programs are written and tested on Mac. This repository is work-in-progress and continually-revised. 
 
 For those who are interested in, here I give a step-by-step instruction.  
 For a great introduction of Scala can be found at <http://www.scala-lang.org/node/1305>.
@@ -13,9 +13,8 @@ For a great introduction of Scala can be found at <http://www.scala-lang.org/nod
 (The step 1 and 2 are needed for the first time only.)
 
 1. For character encoding for Scala, the following settings are necessary (only for Mac users?).
-
-        (1) add ``export JAVA_OPTS="-Dfile.encoding=UTF-8"`` in your (bash, zsh, etc) rc file.
-        (2) create ~/.sbtconfig and write ``SBT_OPTS=-Dfile.encoding=UTF-8``.
+1.1. add ``export JAVA_OPTS="-Dfile.encoding=UTF-8"`` in your (bash, zsh, etc) rc file.
+1.2. create ``~/.sbtconfig`` and write ``SBT_OPTS=-Dfile.encoding=UTF-8``.
 
 2. Download the repository and tutorial dataset. 
 
@@ -50,9 +49,14 @@ For a great introduction of Scala can be found at <http://www.scala-lang.org/nod
 
 5. (optional) Compile your code by ``sbt compile``.
 
+  N.B. When you fail with OutOfMemoryError (PermGen space), add  
+  ``export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:PermSize=256M -XX:MaxPermSize=512M"``  
+  in your rc (bashrc, zshrc, etc.) file.
+
 6. (optional) Write test at src/test/scala/, according to your test framework.
 
 7. Run your code by either  
-        a. ``scala src/main/scala/yourcode.scala (arg1 arg2 ...) Scala`` (if you don't compile your code at step 4.)  
-        b. ``sbt run`` or ``sbt 'run arg1 arg2 ... '``
+  a. ``scala src/main/scala/yourcode.scala (arg1 arg2 ...) Scala`` (if you don't compile your code at step 4.)  
+  b. ``sbt run`` or ``sbt 'run arg1 arg2 ... '``  
+
 
