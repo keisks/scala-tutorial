@@ -49,25 +49,21 @@ object WordSegmentation {
               best_edge(word_end) = ((word_begin, word_end))
             }
           }
-          //println(word_begin)
-          //println(word_end)
-          //println(best_score)
-          //println(best_edge)
         }
       }
       
       // Backward step
+      val words = mutable.ListBuffer.empty[String]
+      var next_edge = best_edge(best_edge.length-1)
 
-
-
-     
-
-
-
+      while (next_edge._1 != -1){
+        val word = line.substring(next_edge._1, next_edge._2)
+        words += word
+        next_edge = best_edge(next_edge._1)
+      }
+      println(words.reverse.mkString(" "))
 
     }
-
-
     
   }
 
