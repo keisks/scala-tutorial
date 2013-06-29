@@ -1,6 +1,6 @@
 object TrainNgram {
 
-  val N = 3
+  val N = 2 // You can edit N.
 
   def main(args: Array[String]): Unit = {
     import scala.io._
@@ -50,9 +50,11 @@ object TrainNgram {
               context_counts = ngramlist.init.mkString(" ")
             }
             
-            // println(counts)
-            // println(context_counts)
-            // println(unique_context)
+            /* for debug
+            println(counts)
+            println(context_counts)
+            println(unique_context)
+            */
 
             // Add countMap
             if (countMap.contains(counts)) {
@@ -96,15 +98,10 @@ object TrainNgram {
       val context_array = ngram split ' ' dropRight 1
       val context = context_array.mkString(" ").trim
 
-      //println(ngram)
-      //println(context)
-
       val probability = countMap(ngram).toFloat/contextMap(context).toFloat
-      //println(f"$ngram\t$probability%.6f")   
       probModel.println(f"$ngram\t$probability%.6f")   
 
       //for lambdaModel
-      //if (ngram != "<s>"){
       var u_count = 0.0f
       if (uniqueMap.contains(ngram)){
         u_count = uniqueMap(ngram).toFloat
@@ -112,7 +109,6 @@ object TrainNgram {
 
       val lambda = 1 - ( u_count / (u_count + countMap(ngram).toFloat))
       lambdaModel.println(f"$ngram\t$lambda%.6f")
-      //} 
     }
 
     probModel.close()
@@ -120,4 +116,3 @@ object TrainNgram {
     source.close()
   }
 }
-
