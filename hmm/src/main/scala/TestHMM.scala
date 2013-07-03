@@ -100,12 +100,14 @@ object TestHMM {
           }
         }
       }
+
+      // last transition to </s>
       for (prev <- possibleTag.keys) {
-        val last_tag = len.toString + " </s>"
-        val prev_tag = (len-1).toString + " " + prev
+        val last_tag = (len+1).toString + " </s>"
+        val prev_tag = len.toString + " " + prev
         val last_trans = prev + " </s>"
 
-        if (bestScoreMap.contains(last_tag) && transMap.contains(last_trans)) {
+        if (bestScoreMap.contains(prev_tag) && transMap.contains(last_trans)) {
           val lastTransScore = -(math.log(transMap(last_trans).toDouble)/math.log(2))
           val last_score = bestScoreMap(prev_tag) + lastTransScore
 
@@ -120,19 +122,30 @@ object TestHMM {
           }
         }
       }
-      
-      /*
-      // Backward step
-      val words = mutable.ListBuffer.empty[String]
-      var next_edge = best_edge(best_edge.length-1)
 
-      while (next_edge._1 != -1){
-        val word = line.substring(next_edge._1, next_edge._2)
-        words += word
-        next_edge = best_edge(next_edge._1)
+      /*
+      bestScoreMap.foreach{e =>
+        println(e._1 + " " + e._2)
       }
-      println(words.reverse.mkString(" "))
+      bestEdgeMap.foreach{e =>
+        println(e._1 + " " + e._2)
+      }
       */
+      
+
+      // Backward step
+      val tags = mutable.ListBuffer.empty[String]
+      var next_edge = bestEdgeMap((len+1).toString + " </s>")
+
+      while (next_edge != "0 <s>"){
+        val tmp = next_edge split " "
+        val position = tmp(0)
+        val tag = tmp(1)
+        tags += tag
+        //println(next_edge)
+        next_edge = bestEdgeMap(next_edge)
+      }
+     println(tags.reverse.mkString(" "))
 
     }
     
