@@ -16,7 +16,7 @@ object TrainHMM {
     val transitionMap: mutable.Map[String, Int] = mutable.Map()
     val contextMap: mutable.Map[String, Int] = mutable.Map()
 
-    // count up emit, transition, and context
+    // count up emission, transition, and context
     for (line <- source.getLines()) {
       val wordtags = line.stripLineEnd split ' '
       var previous = "<s>"
@@ -34,18 +34,21 @@ object TrainHMM {
         val transition = previous + ' ' + tag
         val emit = tag + ' ' + word
 
+        // count the transition
         if (transitionMap.contains(transition)) {
           transitionMap.update(transition, transitionMap(transition)+1)
         } else {
           transitionMap += transition -> 1
         }
 
+        // count the context
         if (contextMap.contains(tag)) {
           contextMap.update(tag, contextMap(tag)+1)
         } else {
           contextMap += tag -> 1
         }
 
+        // count the emission
         if (emitMap.contains(emit)) {
           emitMap.update(emit, emitMap(emit)+1)
         } else {
@@ -55,7 +58,9 @@ object TrainHMM {
         previous = tag
       }
 
+      // add the last transition
       val after = previous + " </s>"
+
       if (transitionMap.contains(after)) {
         transitionMap.update(after, transitionMap(after))
       } else {
@@ -69,6 +74,7 @@ object TrainHMM {
     val sortedTransitionKeys = transitionMap.keys.toList.sorted
     val sortedEmitKeys= emitMap.keys.toList.sorted
 
+    // print the transition probabilities
     sortedTransitionKeys.foreach { trans =>
       val prevNext = trans split ' '
       val prev = prevNext(0)
@@ -76,12 +82,12 @@ object TrainHMM {
       outFile.println(f"T\t$trans\t$probability%.6f")
     }
 
+    // print the emission probabilities
     sortedEmitKeys.foreach { emission =>
       val tagWord = emission split ' '
       val pos = tagWord(0)
       val probability = emitMap(emission).toFloat / contextMap(pos).toFloat
       outFile.println(f"E\t$emission\t$probability%.6f")
-      //println("E" + '\t' + emission + '\t' + emitMap(emission).toFloat/contextMap(pos).toFloat)
     }
     source.close()
     outFile.close()
