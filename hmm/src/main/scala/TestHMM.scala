@@ -4,7 +4,7 @@ object TestHMM {
   // Constant values //
   /////////////////////
 
-  // for emission probability smoothing
+  // for emission probability smoothing for unknown words
   val lambda = 0.95 
   val N = 1000000
   // N.B. You may apply lambda values obtained by Witten-Bell Smoothing etc.
@@ -16,7 +16,6 @@ object TestHMM {
     import scala.collection.mutable
     import java.io.PrintWriter
 
-    
     val arglist = args.toList
     val modelPath = arglist(0)
     val inputPath = arglist(1)
@@ -30,7 +29,7 @@ object TestHMM {
     var emitMap = mutable.Map[String, Double]()
     var possibleTag = mutable.Map[String, Int]()
 
-    // load model
+    // model loading
     for (line <- modelFile.getLines()){
       val tmp = line.stripLineEnd split '\t'
       val transEmit = tmp(0)
@@ -69,13 +68,9 @@ object TestHMM {
             val transition = prev + " " + next
 
             if ( bestScoreMap.contains(i_tag) && transMap.contains(transition) ) {
-              //println(transMap(prev+" "+next))
-              //println(emitMap(next+" "+sentence(i)))
               val transScore = -(math.log(transMap(prev+" "+next).toDouble)/math.log(2))
-              //println(next + " " + sentence(i))
 
               // for emitScore, we need smoothing for unknown words
-
               var emitProbability = 0.0d
               if (emitMap.contains(next+" "+sentence(i))) {
                 emitProbability = lambda*(emitMap(next+" "+sentence(i)).toDouble) + (1-lambda)/N
@@ -101,7 +96,7 @@ object TestHMM {
         }
       }
 
-      // last transition to </s>
+      // adding last transition to </s>
       for (prev <- possibleTag.keys) {
         val last_tag = (len+1).toString + " </s>"
         val prev_tag = len.toString + " " + prev
@@ -122,17 +117,7 @@ object TestHMM {
           }
         }
       }
-
-      /*
-      bestScoreMap.foreach{e =>
-        println(e._1 + " " + e._2)
-      }
-      bestEdgeMap.foreach{e =>
-        println(e._1 + " " + e._2)
-      }
-      */
       
-
       // Backward step
       val tags = mutable.ListBuffer.empty[String]
       var next_edge = bestEdgeMap((len+1).toString + " </s>")
@@ -141,15 +126,11 @@ object TestHMM {
         val tmp = next_edge split " "
         val position = tmp(0)
         val tag = tmp(1)
+
         tags += tag
-        //println(next_edge)
         next_edge = bestEdgeMap(next_edge)
       }
      println(tags.reverse.mkString(" "))
-
     }
-    
   }
-
 }
-
