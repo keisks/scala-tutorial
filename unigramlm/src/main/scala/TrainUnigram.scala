@@ -17,7 +17,6 @@ object TrainUnigram {
     //open a file
     val source = Source.fromFile(filePath, "UTF-8")
 
-
     try {
       for(line <- source.getLines()) {
         val words_org = line.stripLineEnd split ' '

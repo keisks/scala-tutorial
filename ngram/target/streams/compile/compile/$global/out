@@ -1,0 +1,21 @@
+[0m[[0mdebug[0m] [0m[0m
+[0m[[0mdebug[0m] [0mInitial source changes: [0m
+[0m[[0mdebug[0m] [0m	removed:Set(/Users/keisuke-sa/Dropbox/work_dp/programming_sandbox/scala-tutorial/bigramlm/src/main/scala/sandbox.scala)[0m
+[0m[[0mdebug[0m] [0m	added: Set()[0m
+[0m[[0mdebug[0m] [0m	modified: Set()[0m
+[0m[[0mdebug[0m] [0mRemoved products: Set()[0m
+[0m[[0mdebug[0m] [0mModified external sources: Set()[0m
+[0m[[0mdebug[0m] [0mModified binary dependencies: Set()[0m
+[0m[[0mdebug[0m] [0mInitial directly invalidated sources: Set(/Users/keisuke-sa/Dropbox/work_dp/programming_sandbox/scala-tutorial/bigramlm/src/main/scala/sandbox.scala)[0m
+[0m[[0mdebug[0m] [0m[0m
+[0m[[0mdebug[0m] [0mSources indirectly invalidated by:[0m
+[0m[[0mdebug[0m] [0m	product: Set()[0m
+[0m[[0mdebug[0m] [0m	binary dep: Set()[0m
+[0m[[0mdebug[0m] [0m	external source: Set()[0m
+[0m[[0mdebug[0m] [0mAll initially invalidated sources: Set(/Users/keisuke-sa/Dropbox/work_dp/programming_sandbox/scala-tutorial/bigramlm/src/main/scala/sandbox.scala)[0m
+[0m[[0mdebug[0m] [0mStep 2 changed sources and immdediate dependencies:[0m
+[0m[[0mdebug[0m] [0m	Set(/Users/keisuke-sa/Dropbox/work_dp/programming_sandbox/scala-tutorial/bigramlm/src/main/scala/sandbox.scala)[0m
+[0m[[0mdebug[0m] [0mNon-trivial strongly connected components: [0m
+[0m[[0mdebug[0m] [0m	[0m
+[0m[[0mdebug[0m] [0mStep 2 invalidated sources:[0m
+[0m[[0mdebug[0m] [0m	Set(/Users/keisuke-sa/Dropbox/work_dp/programming_sandbox/scala-tutorial/bigramlm/src/main/scala/sandbox.scala)[0m
