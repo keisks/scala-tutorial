@@ -119,20 +119,6 @@ object LearnLda {
     // (collapsed) Gibbs Sampling
     gibbsSampling()
 
-    // 
-    ////val tw_distribution: mutable.ListBuffer[mutable.ListBuffer[Tuple(String, Double)]] = mutable.ListBuffer()
-    //for (wt_counts <- xcounts){
-    //  //println(wt_counts)
-    //  val (k, v) = wt_counts
-    //  var w = " "
-    //  var t = " "
-    //  var w_prob = 0.0
-    //  if (k.contains("_")) {
-    //    w = k.split('_')(0)
-    //    t = k.split('_')(1)
-    //    }
-    //}
-      
     println(ycounts)
     println(xcounts)
   }
